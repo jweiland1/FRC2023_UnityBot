@@ -35,7 +35,7 @@ public class ClawControl : MonoBehaviour {
 
     private Transform grabOrigin;
 
-    private bool waitingForObjectToLeave ;
+    private bool waitingForObjectToLeave;
 
     private Transform parent;
 
@@ -62,17 +62,14 @@ public class ClawControl : MonoBehaviour {
         clawDrive.target = -target;
         rightClaw.xDrive = clawDrive;
 
-        if ( clawOpen && heldObject != null) {
+        if (clawOpen && heldObject != null) {
             DropGamePiece();
 
-        } else if ( !clawOpen && heldObject == null) {
-            if (Time.realtimeSinceStartup - openTime > 1.0f) {
-                Debug.Log($"Delta time is {Time.realtimeSinceStartup - openTime}, open time is {openTime}");
-                Vector3 rayStart = this.transform.position + offset;
-                if (Physics.Raycast(grabOrigin.position, this.transform.up, out RaycastHit hit, rayLength)) {
-                    if (hit.transform.gameObject.tag == "GamePiece") {
-                        PickUpGamePiece(hit.transform.gameObject);
-                    }
+        } else if (!clawOpen && heldObject == null) {
+            Vector3 rayStart = this.transform.position + offset;
+            if (Physics.Raycast(grabOrigin.position, this.transform.up, out RaycastHit hit, rayLength)) {
+                if (hit.transform.gameObject.tag == "GamePiece") {
+                    PickUpGamePiece(hit.transform.gameObject);
                 }
             }
         }
@@ -109,14 +106,14 @@ public class ClawControl : MonoBehaviour {
     // Update is called once per frame
     void Update() {
 
-        if ( autoClose && clawOpen ) {
+        if (autoClose && clawOpen) {
             if (Time.realtimeSinceStartup - openTime > 2.0f) {
                 if (Physics.Raycast(grabOrigin.position, this.transform.up, out RaycastHit hit, rayLength)) {
                     if (hit.transform.gameObject.tag == "GamePiece") {
                         //if (!waitingForObjectToLeave) {
-                            ToggleClaw();
-                            PickUpGamePiece(hit.transform.gameObject);
-                            //waitingForObjectToLeave = true;
+                        ToggleClaw();
+                        PickUpGamePiece(hit.transform.gameObject);
+                        //waitingForObjectToLeave = true;
                         //}
                     }
                 } else {
