@@ -56,12 +56,10 @@ public class PlayerInput : MonoBehaviour {
     //float lastClawButton = 0.0f;
 
 
-    const float clawOpenAngle = 25.0f;
+    //const float clawOpenAngle = 25.0f;
 
     RobotActions actions;
 
-    enum Position { Home, Level1, Level2, Level3, Floor, Substation };
-    Position state = Position.Home;
 
 
 
@@ -106,58 +104,119 @@ public class PlayerInput : MonoBehaviour {
 
     private void ArmSubstationPickup_performed(InputAction.CallbackContext obj)
     {
-        armControl.rotationVelocity = 75.0f;
-        armControl.targetRotation = 93.0f;
-        armControl.extensionVelocity = 0.3f;
-        armControl.targetExtension = 0.0f;
-        state = Position.Substation;
+        armControl.armCommands.Clear();
+        ArmCommand c = new ArmCommand(armControl, ArmControl.Position.Substation);
+        c.rotationVelocity = 75.0f;
+        c.rotation = 93.0f;
+        c.extensionVelocity = 0.3f;
+        c.extension = 0.0f;
+        armControl.armCommands.Add(c);
     }
 
     private void ArmFloorPickup_performed(InputAction.CallbackContext obj)
     {
-        armControl.rotationVelocity = 75.0f;
-        armControl.targetRotation = 30.0f;
-        armControl.extensionVelocity = 0.3f;
-        armControl.targetExtension = 0.30f;
-        state = Position.Floor;
+        armControl.armCommands.Clear();
+        ArmCommand c = new ArmCommand(armControl, ArmControl.Position.Floor);
+        c.rotationVelocity = 75.0f;
+        c.rotation = 30.0f;
+        c.extensionVelocity = 0.3f;
+        c.extension = 0.30f;
+        armControl.armCommands.Add(c);
     }
 
     private void ArmGridLevel1_performed(InputAction.CallbackContext obj)
     {
-        armControl.rotationVelocity = 75.0f;
-        armControl.targetRotation = 30.0f;
-        armControl.extensionVelocity = 0.3f;
-        armControl.targetExtension = 0.30f;
-        state = Position.Level1;
+        armControl.armCommands.Clear();
+        ArmCommand c = new ArmCommand(armControl, ArmControl.Position.Level1);
+        c.rotationVelocity = 75.0f;
+        c.rotation = 30.0f;
+        c.extensionVelocity = 0.3f;
+        c.extension = 0.30f;
+        armControl.armCommands.Add(c);
     }
 
     private void ArmGridLevel2_performed(InputAction.CallbackContext obj)
     {
-        armControl.rotationVelocity = 45.0f;
-        armControl.targetRotation = 100.0f;
-        armControl.extensionVelocity = 0.1f;
-        armControl.targetExtension = 0.05f;
-        state = Position.Level2;
+        if ( armControl.state == ArmControl.Position.Floor || armControl.state == ArmControl.Position.Level1) {
+
+            armControl.armCommands.Clear();
+            ArmCommand c = new ArmCommand(armControl, ArmControl.Position.Transition);
+            c.rotationVelocity = 75.0f;
+            c.rotation = 100.0f;
+            c.extensionVelocity = 0.0f;
+            c.extension = 0.0f;
+            armControl.armCommands.Add(c);
+
+            c = new ArmCommand(armControl, ArmControl.Position.Level2);
+            c.rotationVelocity = 0.0f;
+            c.rotation = 100.0f;
+            c.extensionVelocity = 0.4f;
+            c.extension = 0.05f;
+            armControl.armCommands.Add(c);
+
+        } else {
+            armControl.armCommands.Clear();
+            ArmCommand c = new ArmCommand(armControl, ArmControl.Position.Transition);
+            c.rotationVelocity = 75.0f;
+            c.rotation = 100.0f;
+            c.extensionVelocity = 0.0f;
+            c.extension = 0.0f;
+            armControl.armCommands.Add(c);
+
+            c = new ArmCommand(armControl, ArmControl.Position.Level2);
+            c.rotationVelocity = 0.0f;
+            c.rotation = 100.0f;
+            c.extensionVelocity = 0.4f;
+            c.extension = 0.05f;
+            armControl.armCommands.Add(c);
+        }
     }
 
     private void ArmGridLevel3_performed(InputAction.CallbackContext obj) {
-        armControl.rotationVelocity = 75.0f;
-        armControl.targetRotation = 110.0f;
-        armControl.extensionVelocity = 0.3f;
-        armControl.targetExtension = 0.7f ;
-        state = Position.Level3;
-        Debug.Log("Level 3 button");
+        armControl.armCommands.Clear();
+        ArmCommand c = new ArmCommand(armControl, ArmControl.Position.Level3);
+        c.rotationVelocity = 75.0f;
+        c.rotation = 110.0f;
+        c.extensionVelocity = 0.3f;
+        c.extension = 0.7f ;
+        armControl.armCommands.Add(c);
     }
 
     private void ArmHome_performed(InputAction.CallbackContext obj) {
-        armControl.rotationVelocity = 75.0f;
-        armControl.targetRotation = 0.0f;
-        armControl.extensionVelocity = 1.0f;
-        armControl.targetExtension = 0;
-        state = Position.Home;
+        if ( armControl.state == ArmControl.Position.Floor || armControl.state == ArmControl.Position.Level1) {
+            armControl.armCommands.Clear();
+            ArmCommand c = new ArmCommand(armControl, ArmControl.Position.Transition);
+            c.rotationVelocity = 50.0f;
+            c.rotation = 50.0f;
+            c.extensionVelocity = 0.0f;
+            c.extension = armControl.Extension();
+            armControl.armCommands.Add(c);
+
+            c = new ArmCommand(armControl, ArmControl.Position.Home);
+            c.rotationVelocity = 50.0f;
+            c.rotation = 0.0f;
+            c.extensionVelocity = 0.5f;
+            c.extension = 0;
+            armControl.armCommands.Add(c);
+        } else {
+            ArmCommand c = new ArmCommand(armControl, ArmControl.Position.Transition);
+            c.rotationVelocity = 0.0f;
+            c.rotation = armControl.Rotation();
+            c.extensionVelocity = 0.6f;
+            c.extension = 0.0f;
+            armControl.armCommands.Add(c);
+
+            c = new ArmCommand(armControl, ArmControl.Position.Home);
+            c.rotationVelocity = 75.0f;
+            c.rotation = 0.0f;
+            c.extensionVelocity = 0.5f;
+            c.extension = 0;
+            armControl.armCommands.Add(c);
+        }
     }
 
     void RotateArmTo(float angle) {
+        armControl.armCommands.Clear();
         armControl.targetRotation = angle;
     }
 

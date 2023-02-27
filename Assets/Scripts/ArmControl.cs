@@ -26,14 +26,21 @@ public class ArmControl : MonoBehaviour {
     [SerializeField]
     public float extensionVelocity;
 
+    public enum Position { Home, Level1, Level2, Level3, Floor, Substation, Transition };
+    public Position state = Position.Home;
+
+
+
+    public List<ArmCommand> armCommands;
+
     // Start is called before the first frame update
     void Start() {
-
+        armCommands = new List<ArmCommand>();
     }
 
 
     public float Rotation() {
-        return theArm.xDrive.target;
+        return -theArm.xDrive.target;
     }
 
 
@@ -67,7 +74,7 @@ public class ArmControl : MonoBehaviour {
 
 
     public float Extension() {
-        return armCenter.xDrive.target;
+        return -armCenter.xDrive.target;
     }
 
 
@@ -98,6 +105,17 @@ public class ArmControl : MonoBehaviour {
 
     // Update is called once per frame
     void FixedUpdate() {
+        while ( armCommands.Count > 0 ) {
+            ArmCommand c = armCommands[0];
+            if (c.IsFinished()) {
+                this.state = c.DesiredState;
+                armCommands.RemoveAt(0);
+            } else {
+                c.execute();
+                state = Position.Transition;
+                break;
+            }
+        }
         RotateArm();
         ExtendArm();
     }

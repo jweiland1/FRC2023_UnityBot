@@ -280,6 +280,17 @@
                 },
                 {
                     "name": "",
+                    "id": "5a031bd7-912a-4ef0-82f0-6677d4a1edc0",
+                    "path": "<HID::Logitech Logitech Dual Action>/button5",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Driver",
+                    "action": "ToggleClaw",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "610bfd4d-763a-4034-85aa-7b723103fd21",
                     "path": "<HID::Logitech Logitech Dual Action>/button6",
                     "interactions": "",

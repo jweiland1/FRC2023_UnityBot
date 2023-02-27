@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArmCommand : MonoBehaviour
+public class ArmCommand //: MonoBehaviour
 {
 
     public float rotation;
@@ -14,13 +14,13 @@ public class ArmCommand : MonoBehaviour
     public const float extensionTolerance = 0.1f;
 
     public ArmControl arm;
+    public ArmControl.Position DesiredState; 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+
+    public ArmCommand( ArmControl a, ArmControl.Position s) {
+        arm = a;
+        arm.state = s;
     }
-
 
     public void execute( ) {
         if ( arm != null ) {
