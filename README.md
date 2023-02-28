@@ -17,6 +17,8 @@
  * Move arm to double substation pick-up position - "S" on the keyboard.
  * Move arm to "home" position on the robot - "space bar" on the keyboard
  * Manually open/close the claw - "C" on the keyboard.
+ * Add cone gamepiece at the dual substation - "O" on the keyboard
+ * Add cube gamepiece at the dual substation - "U" on the keyboard
 
  ## Cameras
  * Display 1 - shows driver's viewpoint from behind the grid. This display also includes a small version oof the view from the camera attached to the robots claw.

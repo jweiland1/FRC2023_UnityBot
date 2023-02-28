@@ -35,6 +35,16 @@ public class PlayerInput : MonoBehaviour {
     private InputActionReference extendArmAction;
 
     [SerializeField]
+    GameObject gamePiecesFolder;
+
+    [SerializeField]
+    GameObject conePrefab;
+
+    [SerializeField]
+    GameObject cubePrefab;
+
+
+    [SerializeField]
     float rotationScale = 0.25f;
 
     [SerializeField]
@@ -96,6 +106,19 @@ public class PlayerInput : MonoBehaviour {
         actions.RobotControl.ArmSubstationPickup.performed += ArmSubstationPickup_performed;
         actions.RobotControl.ToggleClaw.performed += ToggleClaw_performed;
 
+        actions.RobotControl.AddCone.performed += AddCone_performed;
+        actions.RobotControl.AddCube.performed += AddCube_performed;
+
+    }
+
+    private void AddCube_performed(InputAction.CallbackContext obj)
+    {
+        Instantiate(cubePrefab, new Vector3(-3.0f, 0.963f, -7.732f), Quaternion.Euler(0, 0, 0), gamePiecesFolder.transform);
+    }
+
+    private void AddCone_performed(InputAction.CallbackContext obj)
+    {
+        Instantiate(conePrefab, new Vector3(-3.0f, 0.963f, -7.732f), Quaternion.Euler(0, 0, 0), gamePiecesFolder.transform);
     }
 
     private void ToggleClaw_performed(InputAction.CallbackContext obj) {

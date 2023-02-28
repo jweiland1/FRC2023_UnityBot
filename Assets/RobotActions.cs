@@ -143,6 +143,24 @@ public partial class @RobotActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AddCone"",
+                    ""type"": ""Button"",
+                    ""id"": ""5d48078f-60f3-4678-b98f-ae23129e3f0e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AddCube"",
+                    ""type"": ""Button"",
+                    ""id"": ""340f68c2-1384-40dd-9bd1-d13a590944c2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -398,6 +416,28 @@ public partial class @RobotActions : IInputActionCollection2, IDisposable
                     ""action"": ""Turn2"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""572a3b15-daad-4bc6-a94f-10618250cc67"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Operator"",
+                    ""action"": ""AddCone"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""aba4e271-8c5f-473d-91a7-9a321a327a29"",
+                    ""path"": ""<Keyboard>/u"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Operator"",
+                    ""action"": ""AddCube"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -442,6 +482,8 @@ public partial class @RobotActions : IInputActionCollection2, IDisposable
         m_RobotControl_Drive2 = m_RobotControl.FindAction("Drive2", throwIfNotFound: true);
         m_RobotControl_Turn = m_RobotControl.FindAction("Turn", throwIfNotFound: true);
         m_RobotControl_Turn2 = m_RobotControl.FindAction("Turn2", throwIfNotFound: true);
+        m_RobotControl_AddCone = m_RobotControl.FindAction("AddCone", throwIfNotFound: true);
+        m_RobotControl_AddCube = m_RobotControl.FindAction("AddCube", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -514,6 +556,8 @@ public partial class @RobotActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_RobotControl_Drive2;
     private readonly InputAction m_RobotControl_Turn;
     private readonly InputAction m_RobotControl_Turn2;
+    private readonly InputAction m_RobotControl_AddCone;
+    private readonly InputAction m_RobotControl_AddCube;
     public struct RobotControlActions
     {
         private @RobotActions m_Wrapper;
@@ -531,6 +575,8 @@ public partial class @RobotActions : IInputActionCollection2, IDisposable
         public InputAction @Drive2 => m_Wrapper.m_RobotControl_Drive2;
         public InputAction @Turn => m_Wrapper.m_RobotControl_Turn;
         public InputAction @Turn2 => m_Wrapper.m_RobotControl_Turn2;
+        public InputAction @AddCone => m_Wrapper.m_RobotControl_AddCone;
+        public InputAction @AddCube => m_Wrapper.m_RobotControl_AddCube;
         public InputActionMap Get() { return m_Wrapper.m_RobotControl; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -579,6 +625,12 @@ public partial class @RobotActions : IInputActionCollection2, IDisposable
                 @Turn2.started -= m_Wrapper.m_RobotControlActionsCallbackInterface.OnTurn2;
                 @Turn2.performed -= m_Wrapper.m_RobotControlActionsCallbackInterface.OnTurn2;
                 @Turn2.canceled -= m_Wrapper.m_RobotControlActionsCallbackInterface.OnTurn2;
+                @AddCone.started -= m_Wrapper.m_RobotControlActionsCallbackInterface.OnAddCone;
+                @AddCone.performed -= m_Wrapper.m_RobotControlActionsCallbackInterface.OnAddCone;
+                @AddCone.canceled -= m_Wrapper.m_RobotControlActionsCallbackInterface.OnAddCone;
+                @AddCube.started -= m_Wrapper.m_RobotControlActionsCallbackInterface.OnAddCube;
+                @AddCube.performed -= m_Wrapper.m_RobotControlActionsCallbackInterface.OnAddCube;
+                @AddCube.canceled -= m_Wrapper.m_RobotControlActionsCallbackInterface.OnAddCube;
             }
             m_Wrapper.m_RobotControlActionsCallbackInterface = instance;
             if (instance != null)
@@ -622,6 +674,12 @@ public partial class @RobotActions : IInputActionCollection2, IDisposable
                 @Turn2.started += instance.OnTurn2;
                 @Turn2.performed += instance.OnTurn2;
                 @Turn2.canceled += instance.OnTurn2;
+                @AddCone.started += instance.OnAddCone;
+                @AddCone.performed += instance.OnAddCone;
+                @AddCone.canceled += instance.OnAddCone;
+                @AddCube.started += instance.OnAddCube;
+                @AddCube.performed += instance.OnAddCube;
+                @AddCube.canceled += instance.OnAddCube;
             }
         }
     }
@@ -659,5 +717,7 @@ public partial class @RobotActions : IInputActionCollection2, IDisposable
         void OnDrive2(InputAction.CallbackContext context);
         void OnTurn(InputAction.CallbackContext context);
         void OnTurn2(InputAction.CallbackContext context);
+        void OnAddCone(InputAction.CallbackContext context);
+        void OnAddCube(InputAction.CallbackContext context);
     }
 }

@@ -121,6 +121,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "AddCone",
+                    "type": "Button",
+                    "id": "5d48078f-60f3-4678-b98f-ae23129e3f0e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "AddCube",
+                    "type": "Button",
+                    "id": "340f68c2-1384-40dd-9bd1-d13a590944c2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -374,6 +392,28 @@
                     "processors": "",
                     "groups": "Driver",
                     "action": "Turn2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "572a3b15-daad-4bc6-a94f-10618250cc67",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Operator",
+                    "action": "AddCone",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aba4e271-8c5f-473d-91a7-9a321a327a29",
+                    "path": "<Keyboard>/u",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Operator",
+                    "action": "AddCube",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
