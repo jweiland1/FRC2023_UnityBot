@@ -11,7 +11,7 @@ public class ArmCommand //: MonoBehaviour
     public float extensionVelocity;
 
     public const float rotationTolerance = 1.0f;
-    public const float extensionTolerance = 0.1f;
+    public const float extensionTolerance = 0.01f;
 
     public ArmControl arm;
     public ArmControl.Position DesiredState; 
@@ -34,8 +34,8 @@ public class ArmCommand //: MonoBehaviour
 
     public bool IsFinished() {
         if (arm != null ) {
-            return Mathf.Abs(arm.Rotation() - rotation ) < rotationTolerance
-                   && Mathf.Abs( arm.Extension() - extension) < extensionTolerance ;
+            return ( rotationVelocity == 0.0f || Mathf.Abs(arm.Rotation() - rotation ) < rotationTolerance)
+                   && ( extensionVelocity == 0.0f ||Mathf.Abs( arm.Extension() - extension) < extensionTolerance) ;
         }
         return true;
     }

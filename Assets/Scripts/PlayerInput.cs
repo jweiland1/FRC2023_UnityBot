@@ -149,9 +149,9 @@ public class PlayerInput : MonoBehaviour {
 
             c = new ArmCommand(armControl, ArmControl.Position.Level2);
             c.rotationVelocity = 0.0f;
-            c.rotation = 100.0f;
+            c.rotation = armControl.Rotation();
             c.extensionVelocity = 0.4f;
-            c.extension = 0.05f;
+            c.extension = 0.25f;
             armControl.armCommands.Add(c);
 
         } else {
@@ -167,7 +167,7 @@ public class PlayerInput : MonoBehaviour {
             c.rotationVelocity = 0.0f;
             c.rotation = 100.0f;
             c.extensionVelocity = 0.4f;
-            c.extension = 0.05f;
+            c.extension = 0.25f;
             armControl.armCommands.Add(c);
         }
     }

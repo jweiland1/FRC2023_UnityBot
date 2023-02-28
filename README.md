@@ -4,9 +4,10 @@
  NOTE - Operation of this game currently requires use of a LogiTech F310 game pad
 
  ## Driver Controls
- Left Stick - Speed
- Right Stick - Turn
- Right Bumper - Auto align to nearest gamepiece seen by claw camera.
+ * Left Stick - Speed
+ * Right Stick - Turn
+ * Right Bumper - Auto align to nearest gamepiece seen by claw camera.
+ * Left bumper - open/close the claw
 
  ## Operator Controls
  * Move arm to grid top row - "Q" on the keyboard

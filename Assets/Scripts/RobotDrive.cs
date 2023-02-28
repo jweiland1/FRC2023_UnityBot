@@ -195,7 +195,7 @@ public class RobotDrive : MonoBehaviour {
         if (!autoSteer || !theClaw.clawOpen) {
             yaw = -turnAction.action.ReadValue<float>();
 
-            yawMultiplier = 0.6f + Mathf.Abs(speed) * 0.2f;
+            yawMultiplier = 0.7f + Mathf.Abs(speed) * 0.2f;
 
 
             yaw = Mathf.Sign(yaw) * (yaw * yaw) * yawMultiplier;
