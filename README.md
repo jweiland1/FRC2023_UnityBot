@@ -29,10 +29,8 @@
 * The right bumper button will cause the bot to align to the nearest gamepiece within view of the claw camera. If the bot is stationary, it will automatically pivot to the piece. If the driver holds down the right bumper and drives forward with the left stick, the bot will autosteer to the game piece and capture it if the claw is open. 
 
  ## Known Issues/To Do
- * Cones are not hollow and cannot be placed on nodes. They will fall off rather than go on.
+ * Cones are now hollow but are not perfect models and don't always go on well.
  * Claw needs to have colliders added so that a piece cannot be picked up from the side.
- * Charging station not functional and needs to have hinge mechanism added
- * No way to add a new gamepiece to the field. Plan to make this a key press operation which will add a cone to the double substation.
  * Position of elements on the field is close, but may not be perfect.
  * Need to be able to place game piece on the robot when the simulation starts.
  * Probably a bunch of stuff as this is very much a work in progress
