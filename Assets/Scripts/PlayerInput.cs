@@ -118,7 +118,7 @@ public class PlayerInput : MonoBehaviour {
 
     private void AddCone_performed(InputAction.CallbackContext obj)
     {
-        Instantiate(conePrefab, new Vector3(-3.0f, 0.963f, -7.732f), Quaternion.Euler(0, 0, 0), gamePiecesFolder.transform);
+        Instantiate(conePrefab, new Vector3(-3.0f, 1.0f, -7.732f), Quaternion.Euler(0, 0, 0), gamePiecesFolder.transform);
     }
 
     private void ToggleClaw_performed(InputAction.CallbackContext obj) {
