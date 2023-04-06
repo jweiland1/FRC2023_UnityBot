@@ -22,12 +22,30 @@ public class ArmCommand //: MonoBehaviour
         arm.state = s;
     }
 
+
+    public ArmCommand(ArmControl a, ArmControl.Position s, float r, float rv, float e, float ev) {
+        arm = a;
+        arm.state = s;
+        rotation = r;
+        rotationVelocity = rv;
+        extension = e;
+        extensionVelocity = ev;
+    }
+
+
+    public void initialize() {
+        arm.state = ArmControl.Position.Transition;
+    }
+
+
     public void execute( ) {
         if ( arm != null ) {
             arm.targetExtension = extension;
             arm.extensionVelocity = extensionVelocity;
             arm.targetRotation = rotation;
             arm.rotationVelocity = rotationVelocity;
+            // arm.setAngle( rotation, rotationVelocity) ;
+            // arm.setLength( ... ) ;
         }
     }
 

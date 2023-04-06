@@ -67,6 +67,8 @@ public class RobotDrive : MonoBehaviour {
     [SerializeField]
     ClawControl theClaw;
 
+    public float pitch = 0.0f;
+
     InputDevice gamepad;
 
     InputControl leftY;
@@ -78,43 +80,13 @@ public class RobotDrive : MonoBehaviour {
 
     PIDController pid;
 
-    //public Vector2 moveInput;
-
-    //public void OnDrive(InputValue value) {
-    //    moveInput = value.Get<Vector2>();
-    //    Debug.Log("OnDrive called");
-    //}
-
-    //private void OnDrive2(InputValue value) {
-    //    x = value.Get<float>();
-    //    //Debug.Log($"XDrive called with {value.Get<float>()}");
-    //}
-
-    //private void OnTurn(InputValue value) {
-    //    Debug.Log($"Turn called with {value.Get<float>()}");
-    //}
-
-
-    //private void OnAutoSteer(InputValue value) {
-    //    Debug.Log($"Autosteer called with value {value}");
-    //}
-
-
-
 
     // Start is called before the first frame update
     void Start() {
-        //var devices = InputSystem.devices.Where<InputDevice>((id) => id.path.Contains("Logitech"));
-        //if (devices.Count() > 0) {
-        //    gamepad = devices.First<InputDevice>();
-        //    leftY = gamepad.allControls.Where<InputControl>((ic) => ic.path.EndsWith("/stick/y")).First();
-        //    rightX = gamepad.allControls.Where<InputControl>((ic) => ic.path.EndsWith("/z")).First();
-        //}
-
         pid = this.GetComponent<PIDController>();
     }
 
-    class WheelSpeeds {
+    public class WheelSpeeds {
         public float leftSpeed;
         public float rightSpeed;
 
@@ -173,6 +145,41 @@ public class RobotDrive : MonoBehaviour {
     }
 
 
+    public void Drive( WheelSpeeds speeds) {
+        leftSpeed = gain * speeds.leftSpeed;
+        rightSpeed = gain * speeds.rightSpeed;
+
+        float leftVelocity = gain * (float)speeds.leftSpeed;
+        float rightVelocity = gain * (float)speeds.rightSpeed;
+
+        var leftDrive = leftBackWheel.xDrive;
+        leftDrive.targetVelocity = TargetVelocity(leftDrive.targetVelocity, leftVelocity, Time.deltaTime);
+
+        var rightDrive = rightBackWheel.xDrive;
+        rightDrive.targetVelocity = TargetVelocity(rightDrive.targetVelocity, rightVelocity, Time.deltaTime);
+
+        leftBackWheel.xDrive = leftDrive;
+        leftMiddleWheel.xDrive = leftDrive;
+        leftFrontWheel.xDrive = leftDrive;
+        rightBackWheel.xDrive = rightDrive;
+        rightMiddleWheel.xDrive = rightDrive;
+        rightFrontWheel.xDrive = rightDrive;
+
+        angularVelocity = leftBackWheel.angularVelocity.x;
+
+        pitch = Pitch();
+
+    }
+
+
+
+    public float Pitch() {
+        pitch = this.transform.eulerAngles.x;
+        pitch = pitch >= 180.0f ? pitch - 360.0f : pitch;
+
+        return pitch;
+    }
+
 
     // Update is called once per frame
     void FixedUpdate() {
@@ -189,7 +196,6 @@ public class RobotDrive : MonoBehaviour {
             speed = (Mathf.Abs(x) / x) * (Mathf.Exp(-400.0f * Mathf.Pow(x / 3.0f, 4.0f)))
                     + (-Mathf.Abs(x) / x);
         }
-
 
         yaw = 0.0f;
         if (!autoSteer || !theClaw.clawOpen) {
@@ -211,43 +217,8 @@ public class RobotDrive : MonoBehaviour {
             lastAutoSteer = true;
         }
 
-        //double turn = yaw * 1.0f;
-
-        // double turn = 0.0;
-        // if (yaw != 0) {
-        // turn = (Math.abs(yaw) / yaw) * (Math.exp(-400.0 * Math.pow(yaw / 3.0, 4.0)))
-        // + (-Math.abs(yaw) / yaw);
-        // }
-        // The turn input results in really quick movement of the bot, so
-        // let's reduce the turn input and make it even less if we are going faster
-        // This is a simple y = mx + b equation to adjust the turn input based on the
-        // speed.
-
-        //turn = turn * (-0.2 * Mathf.Abs(speed) + yawMultiplier);
-
-
         WheelSpeeds speeds = arcadeDriveIK(speed, yaw, true);
-
-        leftSpeed = gain * speeds.leftSpeed;
-        rightSpeed = gain * speeds.rightSpeed;
-
-        float leftVelocity = gain * (float)speeds.leftSpeed;
-        float rightVelocity = gain * (float)speeds.rightSpeed;
-
-        var leftDrive = leftBackWheel.xDrive;
-        leftDrive.targetVelocity = TargetVelocity(leftDrive.targetVelocity, leftVelocity, Time.deltaTime);
-
-        var rightDrive = rightBackWheel.xDrive;
-        rightDrive.targetVelocity = TargetVelocity(rightDrive.targetVelocity, rightVelocity, Time.deltaTime);
-
-        leftBackWheel.xDrive = leftDrive;
-        leftMiddleWheel.xDrive = leftDrive;
-        leftFrontWheel.xDrive = leftDrive;
-        rightBackWheel.xDrive = rightDrive;
-        rightMiddleWheel.xDrive = rightDrive;
-        rightFrontWheel.xDrive = rightDrive;
-
-        angularVelocity = leftBackWheel.angularVelocity.x;
+        Drive(speeds);
 
     }
 }

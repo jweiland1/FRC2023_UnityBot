@@ -161,6 +161,15 @@ public partial class @RobotActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AutoBalance"",
+                    ""type"": ""Button"",
+                    ""id"": ""7ab3059d-57ce-4a95-bbfc-c83f73780fb2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -243,8 +252,30 @@ public partial class @RobotActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""8788c765-f6ca-46d1-89c5-d4727d29d44b"",
+                    ""path"": ""<Joystick>/trigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ArmHome"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""50beb03d-4a3d-4eea-85fa-1ae609468585"",
                     ""path"": ""<Keyboard>/z"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ArmGridLevel1"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""02b81152-0b24-4d55-80f7-36e763303f2a"",
+                    ""path"": ""<HID::Unknown Xbox Adaptive Controller>/button14"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -265,6 +296,17 @@ public partial class @RobotActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""85affcb5-01d9-46a7-a4e1-c644fb3d89b0"",
+                    ""path"": ""<HID::Unknown Xbox Adaptive Controller>/button22"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ArmGridLevel2"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""fd1b68af-4cb1-45ea-b9e4-3acb905a79e2"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
@@ -276,8 +318,8 @@ public partial class @RobotActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""66d08402-4bf5-443d-876f-6983a1bfeb95"",
-                    ""path"": ""<HID::Unknown Xbox Adaptive Controller>/button5"",
+                    ""id"": ""0ddcda6f-b8e3-4f42-8cdb-ee2b0890684c"",
+                    ""path"": ""<HID::Unknown Xbox Adaptive Controller>/button19"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -298,8 +340,30 @@ public partial class @RobotActions : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""769c0c75-a1c5-4f76-8e09-8daf53e2dac1"",
+                    ""path"": ""<HID::Unknown Xbox Adaptive Controller>/button23"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ArmFloorPickup"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""4fb85cb4-af96-466e-b1a2-f13a72ccbb16"",
                     ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ArmSubstationPickup"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""db3e726c-6d0b-4443-9bd8-f5772e511af6"",
+                    ""path"": ""<HID::Unknown Xbox Adaptive Controller>/button15"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -325,6 +389,17 @@ public partial class @RobotActions : IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Driver"",
+                    ""action"": ""ToggleClaw"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5bef8518-9718-4f8c-9840-239a0381e4ba"",
+                    ""path"": ""<HID::Unknown Xbox Adaptive Controller>/button20"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""ToggleClaw"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -438,6 +513,28 @@ public partial class @RobotActions : IInputActionCollection2, IDisposable
                     ""action"": ""AddCube"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8a8895ae-4f0f-42ac-86f4-382c6f4cccfd"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AutoBalance"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8273a3a0-6d42-4b31-944f-00ec59dba704"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""AutoBalance"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -484,6 +581,7 @@ public partial class @RobotActions : IInputActionCollection2, IDisposable
         m_RobotControl_Turn2 = m_RobotControl.FindAction("Turn2", throwIfNotFound: true);
         m_RobotControl_AddCone = m_RobotControl.FindAction("AddCone", throwIfNotFound: true);
         m_RobotControl_AddCube = m_RobotControl.FindAction("AddCube", throwIfNotFound: true);
+        m_RobotControl_AutoBalance = m_RobotControl.FindAction("AutoBalance", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -558,6 +656,7 @@ public partial class @RobotActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_RobotControl_Turn2;
     private readonly InputAction m_RobotControl_AddCone;
     private readonly InputAction m_RobotControl_AddCube;
+    private readonly InputAction m_RobotControl_AutoBalance;
     public struct RobotControlActions
     {
         private @RobotActions m_Wrapper;
@@ -577,6 +676,7 @@ public partial class @RobotActions : IInputActionCollection2, IDisposable
         public InputAction @Turn2 => m_Wrapper.m_RobotControl_Turn2;
         public InputAction @AddCone => m_Wrapper.m_RobotControl_AddCone;
         public InputAction @AddCube => m_Wrapper.m_RobotControl_AddCube;
+        public InputAction @AutoBalance => m_Wrapper.m_RobotControl_AutoBalance;
         public InputActionMap Get() { return m_Wrapper.m_RobotControl; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -631,6 +731,9 @@ public partial class @RobotActions : IInputActionCollection2, IDisposable
                 @AddCube.started -= m_Wrapper.m_RobotControlActionsCallbackInterface.OnAddCube;
                 @AddCube.performed -= m_Wrapper.m_RobotControlActionsCallbackInterface.OnAddCube;
                 @AddCube.canceled -= m_Wrapper.m_RobotControlActionsCallbackInterface.OnAddCube;
+                @AutoBalance.started -= m_Wrapper.m_RobotControlActionsCallbackInterface.OnAutoBalance;
+                @AutoBalance.performed -= m_Wrapper.m_RobotControlActionsCallbackInterface.OnAutoBalance;
+                @AutoBalance.canceled -= m_Wrapper.m_RobotControlActionsCallbackInterface.OnAutoBalance;
             }
             m_Wrapper.m_RobotControlActionsCallbackInterface = instance;
             if (instance != null)
@@ -680,6 +783,9 @@ public partial class @RobotActions : IInputActionCollection2, IDisposable
                 @AddCube.started += instance.OnAddCube;
                 @AddCube.performed += instance.OnAddCube;
                 @AddCube.canceled += instance.OnAddCube;
+                @AutoBalance.started += instance.OnAutoBalance;
+                @AutoBalance.performed += instance.OnAutoBalance;
+                @AutoBalance.canceled += instance.OnAutoBalance;
             }
         }
     }
@@ -719,5 +825,6 @@ public partial class @RobotActions : IInputActionCollection2, IDisposable
         void OnTurn2(InputAction.CallbackContext context);
         void OnAddCone(InputAction.CallbackContext context);
         void OnAddCube(InputAction.CallbackContext context);
+        void OnAutoBalance(InputAction.CallbackContext context);
     }
 }

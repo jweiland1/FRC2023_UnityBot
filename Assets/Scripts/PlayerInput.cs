@@ -43,6 +43,9 @@ public class PlayerInput : MonoBehaviour {
     [SerializeField]
     GameObject cubePrefab;
 
+    [SerializeField]
+    AutoBalance autoBalance;
+
 
     [SerializeField]
     float rotationScale = 0.25f;
@@ -109,7 +112,17 @@ public class PlayerInput : MonoBehaviour {
         actions.RobotControl.AddCone.performed += AddCone_performed;
         actions.RobotControl.AddCube.performed += AddCube_performed;
 
+        actions.RobotControl.AutoBalance.performed += AutoBalance_performed;
+
     }
+
+    private void AutoBalance_performed(InputAction.CallbackContext obj) {
+        if ( autoBalance != null ) {
+            autoBalance.InitiateBalance();
+        }
+    }
+
+
 
     private void AddCube_performed(InputAction.CallbackContext obj)
     {
