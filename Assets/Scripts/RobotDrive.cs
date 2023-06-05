@@ -204,7 +204,8 @@ public class RobotDrive : MonoBehaviour {
             yawMultiplier = 0.7f + Mathf.Abs(speed) * 0.2f;
 
 
-            yaw = Mathf.Sign(yaw) * (yaw * yaw) * yawMultiplier;
+            //yaw = Mathf.Sign(yaw) * (yaw * yaw) * yawMultiplier;
+            yaw = yaw * yawMultiplier;
             if (Mathf.Abs(yaw) < 0.05f) {
                 yaw = 0.0f;
             }
@@ -217,7 +218,8 @@ public class RobotDrive : MonoBehaviour {
             lastAutoSteer = true;
         }
 
-        WheelSpeeds speeds = arcadeDriveIK(speed, yaw, true);
+        //WheelSpeeds speeds = arcadeDriveIK(speed, yaw, true);
+        WheelSpeeds speeds = arcadeDriveIK(speed, yaw, false);
         Drive(speeds);
 
     }
